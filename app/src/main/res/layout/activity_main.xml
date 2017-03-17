@@ -5,15 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cy.wu.hotfixdemo.MainActivity">
+    tools:context="com.cy.wu.hotfixdemo.DexReplaceActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <Button
+        android:id="@+id/btn_apply"
+        android:layout_width="348dp"
+        android:layout_height="58dp"
+        android:text="Apply Patch"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.016"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="352dp"
+        android:layout_height="49dp"
+        android:text="Button"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/btn_apply"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_apply"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="84dp"/>
 
 </android.support.constraint.ConstraintLayout>
