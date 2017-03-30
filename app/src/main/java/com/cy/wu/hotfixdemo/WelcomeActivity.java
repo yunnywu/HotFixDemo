@@ -53,5 +53,12 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.button_res).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WelcomeActivity.this, ResReplaceActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

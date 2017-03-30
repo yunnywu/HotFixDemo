@@ -2,6 +2,7 @@ package com.cy.wu.hotfixdemo;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -96,6 +97,9 @@ public class HookUtil {
                 Method method = Instrumentation.class.getMethod("execStartActivity", types);
 
                 Log.d("wcy", "execStartActivity START!!!");
+                if(intent.getComponent().getClassName().equals("com.cy.wu.hotfixdemo.ClassLoaderActivity")){
+                    intent.setComponent(new ComponentName("com.cy.wu.hotfixdemo", "com.cy.wu.hotfixdemo.HookActivity"));
+                }
 
                 return (ActivityResult) method.invoke(mRealInstrumentation, new Object[]{who,
                         contextThread, token, target, intent,requestCode,options});

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HotFixDemo</string>
+
+    <string name="res_for_load">This is from host apk</string>
 </resources>
