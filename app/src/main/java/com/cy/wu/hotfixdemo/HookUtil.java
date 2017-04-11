@@ -5,6 +5,7 @@ import android.app.Instrumentation;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -97,8 +98,8 @@ public class HookUtil {
                 Method method = Instrumentation.class.getMethod("execStartActivity", types);
 
                 Log.d("wcy", "execStartActivity START!!!");
-                if(intent.getComponent().getClassName().equals("com.cy.wu.hotfixdemo.ClassLoaderActivity")){
-                    intent.setComponent(new ComponentName("com.cy.wu.hotfixdemo", "com.cy.wu.hotfixdemo.HookActivity"));
+                if(intent.getComponent().getClassName().equals("com.cy.wu.resapp1.MainActivity")){
+                    intent.setComponent(new ComponentName("com.cy.wu.hotfixdemo", "com.cy.wu.hotfixdemo.FakeActivity"));
                 }
 
                 return (ActivityResult) method.invoke(mRealInstrumentation, new Object[]{who,
@@ -146,7 +147,15 @@ public class HookUtil {
                     String className = "";
                     if(intent != null && intent.getComponent() != null){
                         className = intent.getComponent().getClassName();
+                        if("com.cy.wu.hotfixdemo.FakeActivity".equals(className)) {
+//                            ActivityInfo activityInfo = new ActivityInfo();
+                            ActivityInfo originAi = (ActivityInfo) getDeclaredObject(object, "activityInfo");
+                            originAi.targetActivity = "com.cy.wu.resapp1.MainActivity";
+//                            activityInfo.applicationInfo = originAi
+                            setDeclaredObject(object, "activityInfo", originAi);
+                        }
                     }
+
                     Log.d("wcy", "startActivity : " +  className);
                     break;
                 default:

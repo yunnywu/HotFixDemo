@@ -1,14 +1,12 @@
 package com.cy.wu.hotfixdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class ResReplaceActivity extends BaseActivity {
 
@@ -34,8 +32,7 @@ public class ResReplaceActivity extends BaseActivity {
             public void onClick(View v) {
                 File file = new File(getFilesDir(), "res1.apk");
                 if(file.exists()){
-                    loadResources(file.getAbsolutePath());
-
+//                    loadResources(file.getAbsolutePath());
                     DexLoadUtil.inject(ResReplaceActivity.this, file.getAbsolutePath());
                 }
 
@@ -46,20 +43,10 @@ public class ResReplaceActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Class uiClass = Class.forName("com.cy.wu.resapp1.UIUtil");
-                    Method method = uiClass.getDeclaredMethod("getStringId");
-                    int resId = (int) method.invoke(null);
-                    Log.d("wcy" , "resid = " + resId);
-
-                    mTvContent.setText(getResources().getText(resId));
-
+                    Class uiClass = Class.forName("com.cy.wu.resapp1.MainActivity");
+                    Intent intent = new Intent(ResReplaceActivity.this, uiClass);
+                    startActivity(intent);
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
 

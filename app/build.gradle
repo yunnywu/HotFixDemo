@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors{
+        cfp{}
+        ygb{}
+    }
 }
 
 dependencies {
@@ -30,3 +35,5 @@ dependencies {
     compile 'com.cy.wu.library.fileinspector:fileinspector:1.0.0'
     testCompile 'junit:junit:4.12'
 }
+
+
